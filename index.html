@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+<div id="app">
+    <section>
+        <div class="row">
+            <div class="col" v-for="post in postsList" key="post.id" >
+                <div class="card">
+                    <img class="card-img" src="https://picsum.photos/200/200" alt="fake image">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ post.title }}</h3>
+                        <p class="card-text">{{ post.body }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-likes">
+                            <button class="card-button" @click="addLike(post)">Liker</button>
+                        <span>
+                            {{ post.like }} {{ post.likes ? post.likes : "0" }} Like{{ post.likes && post.likes > 1 ? "s" : ""}}
+                        </span>
+                        </div>
+                        
+                        <div class="card-comments">
+                            <form @submit.prevent="(e) => addComment(e, post)">
+                                <input type="text" placeholder="Entrez votre commentaire">
+                                <button class="card-button">Commenter</button>
+                            </form>
+                            <div class="comments-list">
+                                <ul>
+                                    <li class="comment" v-for="comment in post.comments" key="post.id" >
+                                        {{comment.body}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="https://unpkg.com/vue@latest"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
