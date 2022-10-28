@@ -4,8 +4,6 @@ createApp({
         data() {
         return {
             postsList: [],
-            userInput: ""
-            /* credentials: "" */
         }
     },
     methods: {
